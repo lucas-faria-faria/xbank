@@ -32,6 +32,14 @@ MongoClient.connect('mongodb://admin:1q2w3e4r@ds113942.mlab.com:13942/contasbanc
 })
 
 // --- ROTAS ---//
+app.post('/addTransaction', (req, res) => {
+  db.collection('transactions').save(req.body, (err, result) => {
+    if (err) return console.log(err)
+    console.log('Registro Salvo no BD')
+    res.redirect('/success')
+  })
+})
+
 app.post('/add', (req, res) => {
   db.collection('clientes').save(req.body, (err, result) => {
     if (err) return console.log(err)
@@ -53,6 +61,13 @@ app.get('/cadastro', (req,res) => {
   res.render('cadastro.ejs')
 })
 
+app.get('/transaction', (req,res) => {
+  db.collection('clientes').find().toArray(function(err, results) {
+    console.log(results)
+    res.render('transactions.ejs',{clientes: results})
+})
+});
+
 app.get('/extratos', (req,res) => {
   db.collection('clientes').find().toArray(function(err, results) {
     console.log(results)
@@ -60,24 +75,27 @@ app.get('/extratos', (req,res) => {
 })
 });
 
-app.get('/extratos/:id', function(req,res){
-  var id = req.params.id ;
-  var idStr = String(id); 
-  db.collection('clientes').find({_id:idStr}).toArray(function(err, result) {
+app.get('/extratos/cc', function(req,res){
+  var cc = req.params.cc;  
+  db.collection('clientes').find({account:"'"+cc+"'"}).toArray(function(err, result) {
     console.log(result)
-    console.log(idStr)
+    console.log("'"+cc+"'")
     res.render('extratosId.ejs',{extrato: result})    
 })
 });
-
-app.get('/relatorios', (req,res) => {
-  res.render('relatorios.ejs')
-})
 
 app.get('/saldos', (req,res) => {
   db.collection('clientes').find().toArray(function(err, results) {
   console.log(results)
   res.render('saldos.ejs',{clientes: results})  
+});
+
+});
+
+app.get('/relatorios', (req,res) => {
+  db.collection('transactions').find().toArray(function(err, results) {
+  console.log(results)
+  res.render('relatorios.ejs',{transactions: results})  
 });
 
 });

@@ -15,15 +15,15 @@
         <h2>Escolha a conta desejada para ver o extrato:</h2>
           <div class="input-group">
             <select class="custom-select" id="inputGroupSelect04">
-                <% var id = 0; %>
+                <% var cc = 0; %>
               <option selected>Conta</option>
               <% for(var i=0; i<clientes.length; i++) {%>
               <option value="1"><%= clientes[i].account %></option>
-              <% id = clientes[i]._id %>                         
+              <% cc = clientes[i].account %>                         
               <% } %>                                        
             </select>
             <div class="input-group-append">
-              <a class="btn btn-outline-secondary" href="/extratos/<%= id.toString() %>" type="button">Pesquisar</a>
+              <a class="btn btn-outline-secondary" href="/extratos/<%= cc %>" type="button">Pesquisar</a>
             </div>
           </div>           
           <br><a class="btn btn-primary" href="/" role="button">Voltar</a>
