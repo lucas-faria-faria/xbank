@@ -75,12 +75,13 @@ app.get('/extratos', (req,res) => {
 })
 });
 
-app.get('/extratos/cc', function(req,res){
-  var cc = req.params.cc;  
-  db.collection('clientes').find({account:"'"+cc+"'"}).toArray(function(err, result) {
-    console.log(result)
-    console.log("'"+cc+"'")
-    res.render('extratosId.ejs',{extrato: result})    
+app.get('/extratos/:cc', function(req,res){
+  var cc = req.params.cc; // pega conta corrente cliente
+  db.collection('transactions').find({remetente:cc}).toArray(function(err, result) {
+  console.log(cc)
+  console.log(result)
+    
+  res.render('extratosId.ejs',{extrato: result})    
 })
 });
 

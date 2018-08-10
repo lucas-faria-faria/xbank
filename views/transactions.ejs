@@ -17,24 +17,25 @@
         <p>Remetente</p>
         <div class="form-check">
                 <% for(var i=0; i<clientes.length; i++) {%>
-                <input class="form-check-input" type="radio" name="remetente" id="exampleRadios1" value="<%= clientes[i].name %>" checked>
-                <label class="form-check-label" for="exampleRadios1">
+                <label class="form-check-label" for="exampleRadios1" style="font-size: 20px">
                         <%= clientes[i].name %>
-                </label> <% } %>
+                </label> 
+                <input class="form-check-input" type="radio" name="remetente" id="exampleRadios1" value="<%= clientes[i].name %>"><br>
+                <% } %>
         </div>
         <br>
         <p>Destinatário</p>
         <div class="form-check">
                 <% for(var i=0; i<clientes.length; i++) {%>
-                <input class="form-check-input" type="radio" name="destinatario" id="exampleRadios1" value="<%= clientes[i].name %>" checked>
-                <label class="form-check-label" for="exampleRadios1">
-                        <%= clientes[i].name %>
-                </label> <% } %>
+                        <label class="form-check-label" for="exampleRadios1" style="font-size: 20px">
+                                <%= clientes[i].name %>
+                        </label> 
+                        <input class="form-check-input" type="radio" name="destinatario" id="exampleRadios1" value="<%= clientes[i].name %>"><br>
+                        <% } %>
         </div>
-        <br>
         <div class="form-group">
             <label for="InputName">Valor</label>
-            <input type="text" class="form-control" id="InputName" aria-describedby="nameHelp" placeholder="Digite o remetente" name="valor"required>          
+            <input type="text" class="form-control" id="InputName" aria-describedby="nameHelp" placeholder="Digite o valor" name="valor"required>          
         </div>   
 
         <hr><button type="submit" class="btn btn-success">Transferir</button>        

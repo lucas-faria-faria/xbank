@@ -13,13 +13,13 @@
 </head>
 <body>
         <h2>Escolha a conta desejada para ver o extrato:</h2>
-          <div class="input-group">
+        <div class="input-group">
             <select class="custom-select" id="inputGroupSelect04">
                 <% var cc = 0; %>
               <option selected>Conta</option>
               <% for(var i=0; i<clientes.length; i++) {%>
-              <option value="1"><%= clientes[i].account %></option>
-              <% cc = clientes[i].account %>                         
+              <option value="<% clientes[i].account %>"><%= clientes[i].account %></option>
+              <% cc = clientes[i].name %>                         
               <% } %>                                        
             </select>
             <div class="input-group-append">
@@ -27,5 +27,6 @@
             </div>
           </div>           
           <br><a class="btn btn-primary" href="/" role="button">Voltar</a>
+          
 </body>
 </html>
